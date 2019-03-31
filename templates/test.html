@@ -11,21 +11,24 @@
 
 <body>
 <h1 class="center">Revenge of the Skin</h1>
+<form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+</form>
 {% if currimg %}
-    <img src="{{ currimg }}" alt="where's my file? >:/" height>
+    <img src="{{ currimg }}" alt="where's my file? >:/" class="center" id="currimg">
 {% endif %}
 
 {% if labels %}
+<div id="diagnosis"></div>
 <h2> Labels: </h2>
 {% for label in labels %}
     <div class="label">{{ label.display_name }}</div>
 {% endfor %}
+</div>
 {% endif %}
 
 
-<form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-</form>
+
 </body>
 </html>
