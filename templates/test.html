@@ -33,7 +33,7 @@
 {% for label in labels %}
     <li class="label">
         <div>{{ getdata(label.display_name).name }}</div>
-        <div> confidence score: {{ label['classification'].score }}</div>
+        <div> confidence score: {{ '%.2f'%(label['classification'].score) }}</div>
     </li>
 {% endfor %}
 </ol>
