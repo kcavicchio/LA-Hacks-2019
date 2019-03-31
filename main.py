@@ -1,4 +1,4 @@
-import predict
+import predict, diagnose
 import os
 from flask import render_template, Flask, request, flash, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -11,7 +11,11 @@ app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 PROJECT_ID = "bionic-water-236108"
-DATA_ID = "ICN5878889244477839671"
+DATA_ID = "ICN313403231470272577"
+
+@app.context_processor
+def data_processor():
+    return dict(getdata=diagnose.get_data)
 
 
 def prediction(filepath):
@@ -24,9 +28,7 @@ def prediction(filepath):
 def hello_world():
     # labels = prediction('./static/uploads/panda1.jpg').payload
     # predict.get_prediction('./static/uploads/panda1.jpg', PROJECT_ID, DATA_ID)
-    # print(labels)
     return render_template('test.html', currimg="static/uploads/itchyarmpit.png")
-    # return app.send_static_file('test.html')
 
 
 def allowed_file(filename):
@@ -55,12 +57,10 @@ def upload_file():
             redirect(url_for('upload_file', filename=filename))
             # filepath = UPLOAD_FOLDER + '/' + filename
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            # filepath = 'static/uploads/panda1.jpg'
             labels = prediction(filepath).payload
-            # predict.get_prediction(filepath, PROJECT_ID, DATA_ID)
-            print(labels)
-            return render_template('test.html', currimg=filepath, labels=labels)
-            # return app.send_static_file('test.html')
+            labelinfo = diagnose.get_data(labels[0].display_name)
+            # print(labels)
+            return render_template('test.html', currimg=filepath, labels=labels, info=labelinfo)
             # return rdr
     # hello_world()
     return 0

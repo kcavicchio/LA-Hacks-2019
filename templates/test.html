@@ -21,10 +21,20 @@
 
 {% if labels %}
 <div id="diagnosis"></div>
-<h2> Labels: </h2>
+<h2> Top Diagnosis: </h2>
+<h3> {{ info.name }}</h3>
+<p> Cause: {{ info.cause }}</p>
+<p> Cure: {{ info.cure }}</p>
+<p> Doctor says: "{{ info.doctor }}"</p>
+<h2> All Matches: </h2>
+<ol>
 {% for label in labels %}
-    <div class="label">{{ label.display_name }}</div>
+    <li class="label">
+        <div>{{ getdata(label.display_name).name }}</div>
+        <div> confidence score: {{ label['classification'].score }}</div>
+    </li>
 {% endfor %}
+</ol>
 </div>
 {% endif %}
 
