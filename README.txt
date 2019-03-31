@@ -1,7 +1,10 @@
 
 README.txt
 
-Ever wondered where your Aunt Sally keeps getting these strange rashes that she puts in the family photo album every week?
+It's the REVENGE OF THE ITCH!
+
+Ever wondered where your Aunt Lorraine keeps getting these strange rashes that 
+she puts in the family photo album every week?
 No? Well, send this site to her so she can find out and stop showing you!
 
 Disclaimer:
@@ -65,5 +68,10 @@ added more functionality to our app by also running input images through Cloud V
 but this is outside the intended use of the application, and the added overhead of
 making a second machine learning analysis request did not warrant the extra functionality,
 especially when contending with the inconsistent wifi provided at the hackathon.
+
+Future Functionality:
+We would love to implement some more features for our app, including:
+- Similar detection for other skin ailments (moles, sunburn, bruises, acne, etc)
+- An automatic web search for appropriate doctors in your area
 
 README by: Karen Cavicchio

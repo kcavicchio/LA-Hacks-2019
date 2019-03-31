@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Itchy Armpit</title>
+    <link rel="stylesheet" type="text/css"
+    href="/static/css/style.css" >
+    <!--<style>{{ url_for('static', filename='css/style.css') }}
+        img { height:300px; width:auto; }
+    </style>-->
+</head>
+
+<body>
+<h1 class="center">Revenge of the Itch</h1>
+<form method=post enctype=multipart/form-data>
+    <input type=file name=file>
+    <input type=submit value=Upload>
+</form>
+{% if currimg %}
+    <img src="{{ currimg }}" alt="where's my file? >:/" class="center" id="currimg">
+{% endif %}
+
+{% if labels %}
+{% if info %}
+<div id="diagnosis"></div>
+<h2> Top Diagnosis: </h2>
+<h3> {{ info.name }}</h3>
+<p> Cause: {{ info.cause }}</p>
+<p> Cure: {{ info.cure }}</p>
+<p> Doctor says: "{{ info.doctor }}"</p>
+{% endif %}
+<h2> All Matches: </h2>
+<ol>
+{% for label in labels %}
+    <li class="label">
+        <div>{{ getdata(label.display_name).name }}</div>
+        <div> confidence score: {{ '%.2f'%(label['classification'].score) }}</div>
+    </li>
+{% endfor %}
+</ol>
+</div>
+{% endif %}
+
+
+
+</body>
+</html>
