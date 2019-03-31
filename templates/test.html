@@ -20,12 +20,14 @@
 {% endif %}
 
 {% if labels %}
+{% if info %}
 <div id="diagnosis"></div>
 <h2> Top Diagnosis: </h2>
 <h3> {{ info.name }}</h3>
 <p> Cause: {{ info.cause }}</p>
 <p> Cure: {{ info.cure }}</p>
 <p> Doctor says: "{{ info.doctor }}"</p>
+{% endif %}
 <h2> All Matches: </h2>
 <ol>
 {% for label in labels %}

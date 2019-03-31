@@ -58,9 +58,10 @@ def upload_file():
             # filepath = UPLOAD_FOLDER + '/' + filename
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             labels = prediction(filepath).payload
-            labelinfo = diagnose.get_data(labels[0].display_name)
-            # print(labels)
-            return render_template('test.html', currimg=filepath, labels=labels, info=labelinfo)
+            if (len(labels) > 0):
+                labelinfo = diagnose.get_data(labels[0].display_name)
+                return render_template('test.html', currimg=filepath, labels=labels, info=labelinfo)
+            return render_template('test.html', currimg=filepath)
             # return rdr
     # hello_world()
     return 0
